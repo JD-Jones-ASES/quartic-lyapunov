@@ -1,5 +1,3 @@
 module
-public import QuarticLyapunov.EndpointUnique
+public import QuarticLyapunov.ExplicitEndpoint
 public import QuarticLyapunov.Application
-public import QuarticLyapunov.Factorization
-public import QuarticLyapunov.PositiveReal

@@ -2,15 +2,18 @@ version: v0.4
 project:
   name: Exact quartic Lyapunov classification
   description: >-
-    A planar homogeneous cubic family has an explicitly isolated algebraic
-    parameter with a positive definite weak quartic Lyapunov certificate.
-    No strict quartic exists at this parameter, and every weak quartic there
-    is a positive scalar multiple of the explicit certificate. An integer
-    quartic is strict at parameter two although every positive definite weak
-    homogeneous quadratic fails there. The current formal development proves
-    these endpoint and degree-separation results. The complete strict and weak
-    parameter classification is a written result whose contraction bridge is
-    still being formalized.
+    For a specified planar homogeneous cubic family, positive definite real
+    homogeneous quartic Lyapunov certificates exist with strict derivative
+    exactly when the absolute parameter is below an explicit algebraic
+    boundary, and with weak derivative exactly through that boundary.
+    The boundary is about 2.1281535330886186, and its square is the unique
+    root above one of a displayed degree-six polynomial. The explicit weak
+    endpoint quartic is unique up to positive scaling; its negative derivative
+    is a cubic square with three distinct real zero lines. A degree-preserving
+    contraction proves the entire parameter classification. An integer quartic
+    at parameter two is strict while no positive definite homogeneous quadratic
+    is even weak. The statements allow all five real quartic coefficients and
+    use actual partial derivatives along the field.
   authors: [JD Jones]
   responsible_maintainers: [JD Jones]
   license: MIT
@@ -19,10 +22,11 @@ classification:
   msc2020: [34D20, 93D05, 14P10]
 status:
   scope: >-
-    The current compared contract includes the exact algebraic endpoint,
-    weak attainment, strict exclusion, complete endpoint-ray uniqueness,
-    rational degree separation and nine concrete definition contracts.
-    The two full-parameter iff statements are not yet included.
+    The complete strict and weak signed-parameter classification, isolated
+    algebraic boundary, explicit endpoint coefficients, endpoint-ray uniqueness,
+    three real cubic zero lines, contraction and rational degree separation.
+    Eight mathematical contracts and ten concrete definitions are compared.
+    Mechanical verification status is recorded in VERIFICATION.md.
   axioms: [propext, Classical.choice, Quot.sound]
 sources:
   - title: Exact quartic Lyapunov classification
@@ -62,12 +66,10 @@ review:
   status: agent-reviewed
   reviewers: [OpenAI Codex]
   notes: >-
-    Developer self-review and independent exact arithmetic replays are complete
-    for the endpoint. GPT Pro review is planned after the full initial build.
+    Developer self-review and independent exact arithmetic replays accompany the
+    full formalization. GPT Pro review is planned after the initial build.
     No human specialist review or Palomar review has occurred.
 limitations:
-  - Full-parameter contraction and both iff statements remain to be formalized.
-  - Exact-commit Linux Comparator and independent kernels have not yet run.
   - Variable damping and all-degree thresholds are not classified.
   - Global ODE stability is supplied by the cited source and is not formalized here.
   - Worldwide priority and human specialist review are unestablished.

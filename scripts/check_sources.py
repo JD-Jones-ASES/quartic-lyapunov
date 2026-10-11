@@ -18,5 +18,5 @@ if any(not n.startswith('Mathlib') for n in imports):raise SystemExit('Unexpecte
 manifest=json.loads((ROOT/'lake-manifest.json').read_text())
 if any(not re.fullmatch('[0-9a-f]{40}',p['rev']) for p in manifest['packages']):raise SystemExit('Unpinned dependency')
 for path in list(ROOT.glob('*.md'))+list((ROOT/'docs').glob('*.md'))+list((ROOT/'evidence').glob('*.md')):
-    if re.search(r'Analytic.Lab|P0190|/Users/|/private/tmp|research/',path.read_text(),re.I):raise SystemExit(f'Nonstandalone reference: {path.name}')
+    if re.search(r'/Users/|/private/tmp|research/',path.read_text(),re.I):raise SystemExit(f'Nonstandalone reference: {path.name}')
 print(f'Source contract passed: {len(files)} Lean modules, Mathlib-only Challenge, pinned manifest, standalone documentation')

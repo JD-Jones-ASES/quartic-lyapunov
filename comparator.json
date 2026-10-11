@@ -3,7 +3,13 @@
   "solution_module": "QuarticLyapunovSolution",
   "theorem_names": [
     "QuarticLyapunov.endpoint_classification",
-    "QuarticLyapunov.degree_separation"
+    "QuarticLyapunov.degree_separation",
+    "QuarticLyapunov.strict_classification",
+    "QuarticLyapunov.weak_classification",
+    "QuarticLyapunov.endpoint_explicit",
+    "QuarticLyapunov.endpoint_geometry",
+    "QuarticLyapunov.degree_preserving_contraction",
+    "QuarticLyapunov.boundary_isolation"
   ],
   "definition_names": [
     "QuarticLyapunov.quartic",
@@ -14,7 +20,8 @@
     "QuarticLyapunov.WeakQuarticCertificate",
     "QuarticLyapunov.phi",
     "QuarticLyapunov.quadratic",
-    "QuarticLyapunov.quadraticLie"
+    "QuarticLyapunov.quadraticLie",
+    "QuarticLyapunov.explicitEndpoint"
   ],
   "permitted_axioms": [
     "propext",

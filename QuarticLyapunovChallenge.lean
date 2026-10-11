@@ -1,8 +1,9 @@
 module
 public import Mathlib
 
-/-! Current proved endpoint and degree-separation contracts. The full parameter
-classification remains under construction; see VERIFICATION.md. -/
+/-! Complete quartic classification for the displayed cubic field. The only
+root hypotheses specify the unique explicit algebraic boundary; its existence
+is proved by endpoint_classification. All five quartic coefficients are unrestricted. -/
 @[expose] public noncomputable section
 namespace QuarticLyapunov
 
@@ -61,6 +62,53 @@ theorem degree_separation :
     ¬ ∃ a d e : ℝ,
       (∀ x y : ℝ, x≠0 ∨ y≠0 → 0 < quadratic a d e x y) ∧
       (∀ x y : ℝ, x≠0 ∨ y≠0 → quadraticLie 2 a d e x y ≤ 0) := by
+  sorry
+
+/-- Explicit algebraic endpoint coefficients in the monic-cubic-square normalization.
+The five rational Horner polynomials are evaluated at the positive root b. -/
+def explicitEndpoint (b : ℝ) : Coeff :=
+  ![((((((((((((139079209 / 91413225 : ℝ)*b+(-73861532 / 91413225 : ℝ))*b+(-3056012767 / 365652900 : ℝ))*b+(408113144 / 91413225 : ℝ))*b+(2838406961 / 292522320 : ℝ))*b+(-96478534 / 18282645 : ℝ))*b+(-7284622853 / 731305800 : ℝ))*b+(7346593463 / 1462611600 : ℝ))*b+(-18095894717 / 1462611600 : ℝ))*b+(11810757931 / 1462611600 : ℝ))*b+(-3777931663 / 146261160 : ℝ))*b+(2373897047 / 146261160 : ℝ)),
+    ((((((((((((-112708516 / 91413225 : ℝ)*b+(63916832 / 91413225 : ℝ))*b+(588460267 / 91413225 : ℝ))*b+(-302753444 / 91413225 : ℝ))*b+(-95414305 / 14626116 : ℝ))*b+(35216839 / 18282645 : ℝ))*b+(3020482261 / 365652900 : ℝ))*b+(-840254147 / 365652900 : ℝ))*b+(948029378 / 91413225 : ℝ))*b+(-3674353039 / 365652900 : ℝ))*b+(94262401 / 3656529 : ℝ))*b+(-548592473 / 36565290 : ℝ)),
+    ((((((((((((157993082 / 91413225 : ℝ)*b+(-23681072 / 18282645 : ℝ))*b+(-1611187363 / 182826450 : ℝ))*b+(121805234 / 18282645 : ℝ))*b+(1052853677 / 146261160 : ℝ))*b+(-37908551 / 7313058 : ℝ))*b+(-677585618 / 91413225 : ℝ))*b+(501602359 / 146261160 : ℝ))*b+(-12146089103 / 731305800 : ℝ))*b+(2190008183 / 146261160 : ℝ))*b+(-2309201641 / 73130580 : ℝ))*b+(268110739 / 14626116 : ℝ)),
+    ((((((((((((-60026932 / 91413225 : ℝ)*b+(48080912 / 91413225 : ℝ))*b+(313277839 / 91413225 : ℝ))*b+(-270510704 / 91413225 : ℝ))*b+(-218039873 / 73130580 : ℝ))*b+(66082084 / 18282645 : ℝ))*b+(636499447 / 365652900 : ℝ))*b+(-927817877 / 365652900 : ℝ))*b+(1507849747 / 182826450 : ℝ))*b+(-2486619949 / 365652900 : ℝ))*b+(207368702 / 18282645 : ℝ))*b+(-226368203 / 36565290 : ℝ)),
+    ((((((((((((46299401 / 91413225 : ℝ)*b+(-31292668 / 91413225 : ℝ))*b+(-987796463 / 365652900 : ℝ))*b+(168629656 / 91413225 : ℝ))*b+(834278689 / 292522320 : ℝ))*b+(-38514926 / 18282645 : ℝ))*b+(-2222283667 / 731305800 : ℝ))*b+(3808067887 / 1462611600 : ℝ))*b+(-7649088313 / 1462611600 : ℝ))*b+(4633388819 / 1462611600 : ℝ))*b+(-1140664907 / 146261160 : ℝ))*b+(725927503 / 146261160 : ℝ))]
+
+/-- The complete strict quartic classification, including both parameter signs. -/
+theorem strict_classification (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) (b : ℝ) :
+    (∃ c : Coeff, StrictQuarticCertificate b c) ↔ |b| < B := by
+  sorry
+
+/-- The complete weak quartic classification, with endpoint attainment. -/
+theorem weak_classification (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) (b : ℝ) :
+    (∃ c : Coeff, WeakQuarticCertificate b c) ↔ |b| ≤ B := by
+  sorry
+
+/-- The literal algebraic coefficient vector is weak and generates the complete endpoint ray. -/
+theorem endpoint_explicit (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) :
+    WeakQuarticCertificate B (explicitEndpoint B) ∧
+    (∀ c : Coeff, WeakQuarticCertificate B c →
+      ∃ k : ℝ, 0 < k ∧ c=fun i => k*explicitEndpoint B i) := by
+  sorry
+
+/-- The negative endpoint derivative is a monic cubic square with three distinct real lines. -/
+theorem endpoint_geometry (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) :
+    ∃ h₀ h₁ h₂ r s t : ℝ, r < s ∧ s < t ∧
+      (∀ x y : ℝ, -lie B (explicitEndpoint B) x y =
+        (h₀*x^3+h₁*x^2*y+h₂*x*y^2+y^3)^2) ∧
+      h₀+h₁*r+h₂*r^2+r^3=0 ∧ h₀+h₁*s+h₂*s^2+s^3=0 ∧
+      h₀+h₁*t+h₂*t^2+t^3=0 := by
+  sorry
+
+/-- Weak quartic feasibility contracts to strict feasibility without increasing degree. -/
+theorem degree_preserving_contraction (B ρ : ℝ) (hρ₀ : 0 ≤ ρ) (hρ₁ : ρ < 1) :
+    (∃ c : Coeff, WeakQuarticCertificate B c) →
+    ∃ c : Coeff, StrictQuarticCertificate (ρ*B) c := by
+  sorry
+
+/-- Exact rational isolation of the positive boundary; decimals are not proof inputs. -/
+theorem boundary_isolation (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) :
+    (2128153533088618627125605907329:ℝ)/10^30 < B ∧
+    B < (2128153533088618627125605907330:ℝ)/10^30 := by
   sorry
 
 end QuarticLyapunov

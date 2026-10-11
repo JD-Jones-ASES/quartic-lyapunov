@@ -32,3 +32,16 @@ The result resolves a complete finite-degree parameter slice with arbitrary
 real coefficients, and distinguishes weak endpoint attainment from strict
 feasibility. It does not reprove the source's full global asymptotic stability
 or classify every degree or variable damping.
+
+A supplementary catalogue scan used public GitHub repository descriptions for
+“quartic lyapunov” and “lyapunov lean,” and web-indexed Palomar entries. The
+former returned only this newly created repository; the latter returned a
+generic Lyapunov repository. These searches do not cover every public project.
+No implementation files from those projects were read.
+
+[Quartic Lyapunov functions for global fluid stability](https://arxiv.org/abs/2606.18232v1)
+by Darrow, Carlson and Goluskin was checked at the abstract level as a nearby
+2026 result. It treats fluid shear-flow certificates and parameter ranges,
+not this planar cubic ODE or its exact five-coefficient quartic threshold.
+The topical similarity does not establish an application of this theorem to
+fluid stability.

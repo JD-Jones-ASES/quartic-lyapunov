@@ -13,10 +13,10 @@ derivative instead.
 
 There exists a number B_N(a) with
 
-\[
+```math
 a\le B_N(a)<2(a+1),\qquad
-W_N(a)=[0,B_N(a)],\qquad S_N(a)=[0,B_N(a)).              \tag{1}
-\]
+W_N(a)=[0,B_N(a)],\qquad S_N(a)=[0,B_N(a)).              \qquad (1)
+```
 
 **Proof.** The radial polynomial R^N works weakly for 0≤b≤a and strictly
 for 0≤b<a. The contraction lemma in PROOF shows that a weak certificate
@@ -33,15 +33,15 @@ fixed finite-dimensional space of trigonometric polynomials of degree at
 most N, a subsequence converges coefficientwise, hence in C¹, to a
 nonnegative trace p with mean one. It satisfies
 
-\[
-p'+N(-a+B\cos t)p\le0.                                \tag{2}
-\]
+```math
+p'+N(-a+B\cos t)p\le0.                                \qquad (2)
+```
 
 If p(t₀)=0, then
 
-\[
+```math
 E(t)=\exp\big(N[-a(t-t_0)+B(\sin t-\sin t_0)]\big)p(t)
-\]
+```
 
 is nonnegative with E(t₀)=0 and E'≤0. It vanishes on [t₀,t₀+2π],
 contradicting the mean-one normalization. Thus p>0, and it lifts to a
@@ -65,10 +65,10 @@ A comparison between arbitrary consecutive degrees needs a separate proof.
 If V₀ is weak at B₀>0 and Vρ is its outer-factor contraction, the explicit
 bound in the main proof gives, for z≠0 and 0≤ρ<1,
 
-\[
+```math
 -\mathcal L_{f_{a,\rho B_0}}V_\rho(z)
-\ge 2Na\frac{1-\rho}{1+\rho}\,\|z\|^2 V_\rho(z).        \tag{3}
-\]
+\ge 2Na\frac{1-\rho}{1+\rho}\,\|z\|^2 V_\rho(z).        \qquad (3)
+```
 
 Since Vρ is positive on the unit circle, it also has a positive minimum
 mρ there. Hence the left side is at least
