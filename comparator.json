@@ -1,0 +1,24 @@
+{
+  "challenge_module": "QuarticLyapunovChallenge",
+  "solution_module": "QuarticLyapunovSolution",
+  "theorem_names": [
+    "QuarticLyapunov.endpoint_classification",
+    "QuarticLyapunov.degree_separation"
+  ],
+  "definition_names": [
+    "QuarticLyapunov.quartic",
+    "QuarticLyapunov.field",
+    "QuarticLyapunov.lie",
+    "QuarticLyapunov.PositiveQuartic",
+    "QuarticLyapunov.StrictQuarticCertificate",
+    "QuarticLyapunov.WeakQuarticCertificate",
+    "QuarticLyapunov.phi",
+    "QuarticLyapunov.quadratic",
+    "QuarticLyapunov.quadraticLie"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
+}

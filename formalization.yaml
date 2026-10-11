@@ -1,0 +1,73 @@
+version: v0.4
+project:
+  name: Exact quartic Lyapunov classification
+  description: >-
+    A planar homogeneous cubic family has an explicitly isolated algebraic
+    parameter with a positive definite weak quartic Lyapunov certificate.
+    No strict quartic exists at this parameter, and every weak quartic there
+    is a positive scalar multiple of the explicit certificate. An integer
+    quartic is strict at parameter two although every positive definite weak
+    homogeneous quadratic fails there. The current formal development proves
+    these endpoint and degree-separation results. The complete strict and weak
+    parameter classification is a written result whose contraction bridge is
+    still being formalized.
+  authors: [JD Jones]
+  responsible_maintainers: [JD Jones]
+  license: MIT
+classification:
+  arxiv: [math.OC, math.DS]
+  msc2020: [34D20, 93D05, 14P10]
+status:
+  scope: >-
+    The current compared contract includes the exact algebraic endpoint,
+    weak attainment, strict exclusion, complete endpoint-ray uniqueness,
+    rational degree separation and nine concrete definition contracts.
+    The two full-parameter iff statements are not yet included.
+  axioms: [propext, Classical.choice, Quot.sound]
+sources:
+  - title: Exact quartic Lyapunov classification
+    type: original-proof
+    relationship: other
+    location: Proof.md
+    note: Original accompanying proof for this development, with current formal coverage recorded separately.
+  - title: A Globally Asymptotically Stable Planar Homogeneous Polynomial Vector Field With No Polynomial Lyapunov Function
+    type: paper
+    relationship: background
+    authors: [Jun Liu, Maxwell Fitzsimmons]
+    id: https://arxiv.org/abs/2607.16171v1
+    note: Supplies the vector-field family, the all-degree obstruction and the outer-factor background. It does not state the exact quartic classification.
+  - title: Stability of Polynomial Differential Equations — Complexity and Converse Lyapunov Questions
+    type: paper
+    relationship: background
+    authors: [Amir Ali Ahmadi, Pablo A. Parrilo]
+    id: https://arxiv.org/abs/1308.6833
+    note: Background on degree obstructions and nonmonotonicity in other planar cubic families.
+  - title: On Algebraic Proofs of Stability for Homogeneous Vector Fields
+    type: paper
+    relationship: background
+    authors: [Amir Ali Ahmadi, Bachir El Khadir]
+    id: https://arxiv.org/abs/1803.01877
+    note: Rational certificates and algebraic Lyapunov converse background.
+automation:
+  methods:
+    - method: agent
+      models: [GPT-6]
+      framework: OpenAI Codex
+      tool_setup: Lean and Mathlib at the committed pins, Python Fraction and SymPy.
+      notes: >-
+        Developed the mathematical argument, exact certificates, Lean proof,
+        source audit and documentation. Numerical exploration aided discovery;
+        exact generated identities are independently checked in Lean.
+review:
+  status: agent-reviewed
+  reviewers: [OpenAI Codex]
+  notes: >-
+    Developer self-review and independent exact arithmetic replays are complete
+    for the endpoint. GPT Pro review is planned after the full initial build.
+    No human specialist review or Palomar review has occurred.
+limitations:
+  - Full-parameter contraction and both iff statements remain to be formalized.
+  - Exact-commit Linux Comparator and independent kernels have not yet run.
+  - Variable damping and all-degree thresholds are not classified.
+  - Global ODE stability is supplied by the cited source and is not formalized here.
+  - Worldwide priority and human specialist review are unestablished.
