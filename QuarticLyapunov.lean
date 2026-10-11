@@ -1,3 +1,5 @@
 module
 public import QuarticLyapunov.ExplicitEndpoint
 public import QuarticLyapunov.Application
+public import QuarticLyapunov.EndpointCone
+public import QuarticLyapunov.SexticApplication

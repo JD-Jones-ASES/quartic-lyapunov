@@ -9,7 +9,9 @@
     "QuarticLyapunov.endpoint_explicit",
     "QuarticLyapunov.endpoint_geometry",
     "QuarticLyapunov.degree_preserving_contraction",
-    "QuarticLyapunov.boundary_isolation"
+    "QuarticLyapunov.boundary_isolation",
+    "QuarticLyapunov.endpoint_cone_classification",
+    "QuarticLyapunov.sextic_separation"
   ],
   "definition_names": [
     "QuarticLyapunov.quartic",
@@ -21,7 +23,11 @@
     "QuarticLyapunov.phi",
     "QuarticLyapunov.quadratic",
     "QuarticLyapunov.quadraticLie",
-    "QuarticLyapunov.explicitEndpoint"
+    "QuarticLyapunov.explicitEndpoint",
+    "QuarticLyapunov.sextic",
+    "QuarticLyapunov.sexticLie",
+    "QuarticLyapunov.PositiveSextic",
+    "QuarticLyapunov.StrictSexticCertificate"
   ],
   "permitted_axioms": [
     "propext",

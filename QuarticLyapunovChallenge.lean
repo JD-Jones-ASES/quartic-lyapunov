@@ -111,4 +111,41 @@ theorem boundary_isolation (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) :
     B < (2128153533088618627125605907330:ℝ)/10^30 := by
   sorry
 
+/-- The seven unrestricted real coefficients in descending powers of x. -/
+abbrev SexticCoeff := Fin 7 → ℝ
+
+/-- A general real homogeneous sextic on the plane. -/
+def sextic (c : SexticCoeff) (x y : ℝ) : ℝ :=
+  c 0*x^6 + c 1*x^5*y + c 2*x^4*y^2 + c 3*x^3*y^3 +
+  c 4*x^2*y^4 + c 5*x*y^5 + c 6*y^6
+
+/-- Actual Lie derivative, defined using partial derivatives of the sextic. -/
+def sexticLie (b : ℝ) (c : SexticCoeff) (x y : ℝ) : ℝ :=
+  deriv (fun s => sextic c s y) x * (field b x y).1 +
+  deriv (fun s => sextic c x s) y * (field b x y).2
+
+/-- Positive definiteness at every nonzero real pair. -/
+def PositiveSextic (c : SexticCoeff) : Prop :=
+  ∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → 0 < sextic c x y
+
+/-- Strict derivative inequality at every nonzero real pair. -/
+def StrictSexticCertificate (b : ℝ) (c : SexticCoeff) : Prop :=
+  PositiveSextic c ∧ ∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → sexticLie b c x y < 0
+
+/-- The whole cone of quartics with nonpositive endpoint derivative, including zero. -/
+theorem endpoint_cone_classification (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0)
+    (c : Coeff) :
+    (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → lie B c x y ≤ 0) ↔
+      ∃ k : ℝ, 0 ≤ k ∧ c = fun i => k * explicitEndpoint B i := by
+  sorry
+
+/-- A strict integer sextic at nine fourths, where weak quadratics and quartics are impossible. -/
+theorem sextic_separation :
+    StrictSexticCertificate (9/4) ![34, -296, 1247, -2850, 3606, -2358, 634] ∧
+    (¬ ∃ c : Coeff, WeakQuarticCertificate (9/4) c) ∧
+    (¬ ∃ a d e : ℝ,
+      (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → 0 < quadratic a d e x y) ∧
+      (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → quadraticLie (9/4) a d e x y ≤ 0)) := by
+  sorry
+
 end QuarticLyapunov

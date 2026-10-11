@@ -1,15 +1,9 @@
 # Applications of the quartic analysis
 
-These are exact mathematical consequences for the Liu–Fitzsimmons family
-defined in [SOURCES](Sources.md). The contraction argument belongs with
-the classification proof in [PROOF](../Proof.md). The rational identities
-below were independently expanded in SymPy on 2026-10-11; no numerical
-solver result is used as proof.
-
-The [contraction lemma](../Proof.md#2-one-weak-certificate-gives-strict-certificates-below-it)
-applies in every fixed even degree. [EXTENSIONS](Extensions.md) gives its
-attained-boundary and quantitative consequences. Here the focus is an
-explicit rational example where quartics improve on quadratics.
+An explicit integer quartic separates strict degree-four feasibility from
+weak quadratic feasibility in the Liu–Fitzsimmons family. The displayed
+certificate and quadratic exclusion are in the Lean contract; see
+[Verification](../VERIFICATION.md).
 
 ## Exact degree separation at b = 2
 
@@ -104,8 +98,9 @@ polynomial identities and real-order arithmetic.
 
 The contraction principle also excludes weak homogeneous quadratics at
 every $b\ge2$ on the $a=1$ slice: a witness above 2 would contract
-to a strict quadratic at 2. This does not state the exact quadratic
-feasibility threshold below 2.
+to a strict quadratic at 2. The [quadratic classification](QuadraticBoundary.md)
+gives the exact threshold $B_1(1)\approx1.9001890993467045$ as a written
+analytic theorem.
 
 ### Independent trigonometric dual check
 
@@ -137,11 +132,11 @@ the constant coefficient $2u$ forces $u=0$. This contradicts
 positive definiteness. This cross-check is not needed by the simpler
 three-point algebraic proof above.
 
-## Scope of this application
+## Further degree separation
 
-The result at $b=2$ separates actual polynomial certificate degrees,
-including weak quadratic versus strict quartic conditions. The quartic
-and sextic are binary nonnegative forms with explicit SOS witnesses, so
-this is **not** a nonnegative-versus-SOS gap. Global asymptotic stability
-of the underlying family is already supplied by the source paper.
-Current formal verification is recorded in [VERIFICATION.md](../VERIFICATION.md). Worldwide priority and human specialist review are not established.
+Both the quartic value and its sextic negative derivative have explicit SOS
+witnesses. The degree gap concerns Lyapunov certificates for the same field.
+At $b=9/4$, the [sextic certificate](SexticSeparation.md) gives a further
+formal separation: a strict sextic exists while no positive weak quadratic
+or quartic exists. The [all-degree theorem](AllDegreeClassification.md)
+classifies unrestricted-degree existence in a written analytic proof.

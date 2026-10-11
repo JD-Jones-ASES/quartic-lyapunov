@@ -1,7 +1,8 @@
 module
 public import QuarticLyapunov.LieMap
 
-/-! The weak endpoint coefficient vectors form exactly one positive ray. -/
+/-! The endpoint derivative cone is a nonnegative ray; its weak certificates
+form the corresponding positive ray. -/
 @[expose] public noncomputable section
 namespace QuarticLyapunov
 open Polynomial
@@ -31,15 +32,18 @@ theorem endpoint_sextic : sexticPolynomial boundary endpointCoefficients = cubic
   intro z
   rw [sextic_eval,endpoint_negative_lie_square,eval_pow,cubicPolynomial_eval]
 
-theorem endpoint_unique {c : Coeff} (hc : WeakQuarticCertificate boundary c) :
-    ∃ k : ℝ, 0 < k ∧ c = fun i => k*endpointCoefficients i := by
+/-- At the endpoint, the derivative inequality alone forces a nonnegative ray.
+No positivity or nonzero assumption is made on the quartic. -/
+theorem endpoint_nonpositive_derivative_ray {c : Coeff}
+    (hc : ∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → lie boundary c x y ≤ 0) :
+    ∃ k : ℝ, 0 ≤ k ∧ c = fun i => k*endpointCoefficients i := by
   let a := endpointAtoms
   let q := sexticPolynomial boundary c
   have hn : ∀ z : ℝ, 0 ≤ q.eval z := by
     intro z
     dsimp [q]
     rw [sextic_eval]
-    exact neg_nonneg.mpr (hc.2 1 z (Or.inl one_ne_zero))
+    exact neg_nonneg.mpr (hc 1 z (Or.inl one_ne_zero))
   have hsum : a.w₁*q.eval a.r+a.w₂*q.eval a.s+a.w₃*q.eval a.t=0 := by
     simp only [q,sextic_eval]
     exact atomic_dual_annihilates a c
@@ -65,6 +69,23 @@ theorem endpoint_unique {c : Coeff} (hc : WeakQuarticCertificate boundary c) :
     have hh := congrArg (fun p : ℝ[X] => p.coeff i) hpoly
     simpa only [q,sextic_coeff, coeff_mul_C, mul_comm] using hh
   refine ⟨q.leadingCoeff, ?_, hcoeff⟩
+  have hd := hc 0 1 (Or.inr one_ne_zero)
+  have he := endpoint_negative_lie_square 0 1
+  rw [hcoeff] at hd
+  have hscale : lie boundary (fun i => q.leadingCoeff*endpointCoefficients i) 0 1 =
+      q.leadingCoeff*lie boundary endpointCoefficients 0 1 := by
+    simp only [lie_eq,gradient]
+    ring
+  rw [hscale] at hd
+  norm_num [endpointCubic,Endpoint.h3] at he
+  have he' : lie boundary endpointCoefficients 0 1 = -1 := by linarith
+  rw [he'] at hd
+  linarith
+
+theorem endpoint_unique {c : Coeff} (hc : WeakQuarticCertificate boundary c) :
+    ∃ k : ℝ, 0 < k ∧ c = fun i => k*endpointCoefficients i := by
+  obtain ⟨k,_,hcoeff⟩ := endpoint_nonpositive_derivative_ray hc.2
+  refine ⟨k, ?_, hcoeff⟩
   have hp := hc.1 1 0 (Or.inl one_ne_zero)
   have hep := endpoint_positive 1 0 (Or.inl one_ne_zero)
   rw [hcoeff] at hp

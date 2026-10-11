@@ -1,19 +1,17 @@
-# Provenance and review
+# Attribution and disclosure
 
-JD Jones directs and maintains this project. OpenAI Codex (GPT-6) developed
-the mathematical argument, computational certificates, Lean implementation,
-source comparisons and documentation. Symbolic and numerical exploration
-supported discovery; the retained endpoint certificates use exact arithmetic.
-The supplied formalization plan and accompanying proof were developed in the
-same project lineage. No external implementation was copied.
+JD Jones directs and maintains this project. OpenAI models assisted with the
+mathematical arguments, computational certificates, Lean implementation,
+source comparisons and independent checks. Symbolic and numerical exploration
+supported construction of the exact certificates.
 
-The planar family and its published stability and all-degree obstruction
-results are attributed to Jun Liu and Maxwell Fitzsimmons. Further background
-is listed in [Sources](docs/Sources.md). The classification here is presented
-as a proposed original extension, with priority unestablished.
+The planar cubic family and its published stability and all-degree obstruction
+are due to Jun Liu and Maxwell Fitzsimmons. The rational-certificate method
+also follows their construction. [Sources](docs/Sources.md) gives the primary
+references and distinguishes these inputs from the results proved here.
+No external proof implementation was copied.
 
-The mathematical proof and the formal implementation are distinct artifacts.
-[VERIFICATION.md](VERIFICATION.md) records current mechanical coverage. A GPT
-Pro review is planned after the initial complete build; it has not yet occurred.
-No human specialist review, public release, Palomar submission or registration
-is claimed.
+The Lean contract and written analytic supplements have different coverage;
+[Verification](VERIFICATION.md) specifies that boundary. Exact symbolic replay
+checks finite identities, while the formal proof is checked by the stated
+kernels. Neither constitutes external peer review or establishes priority.

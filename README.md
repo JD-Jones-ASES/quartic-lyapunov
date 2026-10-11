@@ -1,7 +1,6 @@
 # quartic-lyapunov
 
-Exact quartic Lyapunov certificates for a planar homogeneous cubic family.
-Private development for a subsequent GPT Pro review.
+Exact polynomial Lyapunov boundaries for a planar homogeneous cubic family.
 
 For $R=x^2+y^2$, consider
 
@@ -9,38 +8,59 @@ For $R=x^2+y^2$, consider
 f_b(x,y)=(-R+b(x^2-y^2))(x,y)+R(-y,x),\qquad b\in\mathbb R.
 ```
 
-The accompanying proof classifies all positive definite real homogeneous
-quartics: strict certificates exist exactly for $|b|<B$, and weak certificates
-exactly for $|b|\le B$. The endpoint quartic is unique up to positive scaling.
-Here $B\approx2.1281535330886186$ and $B^2$ is the unique root above one of
+Positive definite real homogeneous quartics with strictly negative Lie
+derivative exist exactly for $|b|<B$; those with nonpositive Lie derivative
+exist exactly for $|b|\le B$. Here $B\approx2.1281535330886186$ and $B^2$
+is the unique root above one of
 
 ```math
 16u^6-92u^5+125u^4-134u^3-103u^2-200u+100=0.
 ```
 
-The theorem permits all five real quartic coefficients and evaluates the
-actual derivative along the field. An explicit integer quartic at $b=2$
-is strict although no positive definite homogeneous quadratic is even weak.
+At $b=B$, every quartic with nonpositive Lie derivative is a nonnegative
+multiple of one explicit positive quartic, even without assuming positivity.
+Its negative derivative is a cubic square with three distinct real projective
+zero lines. The theorem permits all five real coefficients and uses the
+actual derivative along the field.
 
-The complete classification, endpoint uniqueness and degree-separation
-application compile in Lean. The [verification record](VERIFICATION.md)
-distinguishes local checks from exact-commit Linux verification. This private
-candidate is intended for GPT Pro review before submission.
+The Lean contract also contains a strict integer quartic at $b=2$ where no
+positive weak quadratic exists, and a strict integer sextic at $b=9/4$ where
+neither a positive weak quadratic nor a positive weak quartic exists. The
+[verification record](VERIFICATION.md) specifies the exact release checks.
 
-- [Proof](Proof.md): classification and degree-preserving contraction.
-- [Endpoint](docs/Endpoint.md): exact primal and dual certificates.
-- [Applications](docs/Applications.md) and [extensions](docs/Extensions.md).
-- [Sources](docs/Sources.md): primary literature and bounded overlap audit.
-- [Formal architecture](IMPLEMENTATION.md), [review brief](REVIEW.md) and [disclosure](Disclosure.md).
-- [Exact replays](evidence/README.md).
+![Certificate regions at damping one](figures/certificate_regions.png)
+
+The figure includes written extensions beyond the Lean contract. For positive
+damping $a$, replacing $-R$ by $-aR$ gives the exact unrestricted-degree
+criterion
+
+```math
+|b|<(1+a^{2/3})^{3/2}.
+```
+
+This criterion is equivalent to existence of a positive definite homogeneous
+polynomial of positive degree with strict or weak derivative, or a local
+real-analytic weak Lyapunov function. The all-degree proof, explicit degree bound,
+all-damping quadratic classification and rational certificate at $b=3$
+remain written supplements.
+
+- [Quartic proof](Proof.md), [endpoint certificate](docs/Endpoint.md) and
+  [dual obstruction](docs/Dual.md).
+- [Quartic example at two](docs/Applications.md) and
+  [sextic separation at nine-fourths](docs/SexticSeparation.md).
+- [Fixed-degree intervals](docs/Extensions.md),
+  [all-degree classification](docs/AllDegreeClassification.md) and
+  [quantitative degree bound](docs/QuantitativeDegreeBound.md).
+- [Quadratic boundary for every damping](docs/QuadraticBoundary.md) and
+  [integer field with no analytic certificate](docs/IntegerCounterexample.md).
+- [Formal architecture](IMPLEMENTATION.md), [exact replays](evidence/README.md),
+  [sources](docs/Sources.md) and [disclosure](Disclosure.md).
 
 ```sh
 lake build
-python evidence/independent_replay.py
+python scripts/verify_evidence.py
 ```
 
-The pinned Lean and Mathlib revisions are recorded in `lean-toolchain`,
-`lakefile.toml` and `lake-manifest.json`. The independent Fraction replay uses
-only Python's standard library; the primary replay additionally uses SymPy.
-No public release, Palomar submission, registration or human specialist review
-has occurred. Worldwide priority remains unestablished.
+Lean and Mathlib revisions are pinned in [lean-toolchain](lean-toolchain),
+[lakefile.toml](lakefile.toml) and [lake-manifest.json](lake-manifest.json).
+Python replay dependencies are listed in [requirements.txt](requirements.txt).

@@ -73,4 +73,21 @@ theorem boundary_isolation (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0) :
   rw [boundary_unique B hB hphi]
   exact ⟨boundary_spec.1,boundary_spec.2.1⟩
 
+/-- The whole cone of quartics with nonpositive endpoint derivative, including zero. -/
+theorem endpoint_cone_classification (B : ℝ) (hB : 1 < B) (hphi : phi (B^2)=0)
+    (c : Coeff) :
+    (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → lie B c x y ≤ 0) ↔
+      ∃ k : ℝ, 0 ≤ k ∧ c = fun i => k * explicitEndpoint B i := by
+  rw [boundary_unique B hB hphi, explicitEndpoint_eq]
+  exact endpoint_derivative_cone c
+
+/-- A strict integer sextic at nine fourths, where weak quadratics and quartics are impossible. -/
+theorem sextic_separation :
+    StrictSexticCertificate (9/4) ![34, -296, 1247, -2850, 3606, -2358, 634] ∧
+    (¬ ∃ c : Coeff, WeakQuarticCertificate (9/4) c) ∧
+    (¬ ∃ a d e : ℝ,
+      (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → 0 < quadratic a d e x y) ∧
+      (∀ x y : ℝ, x ≠ 0 ∨ y ≠ 0 → quadraticLie (9/4) a d e x y ≤ 0)) := by
+  exact sextic_degree_separation
+
 end QuarticLyapunov

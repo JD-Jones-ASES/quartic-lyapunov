@@ -1,8 +1,7 @@
 # Exact dual obstruction at the quartic endpoint
 
-Date: 2026-10-11. This note proves a finite algebraic obstruction for the
-normalized family in the companion proof. It does not make a formal Lean
-verification claim.
+An exact positive moment functional excludes strict quartics at the
+algebraic boundary of the [classification](../Proof.md).
 
 Let
 
@@ -182,8 +181,7 @@ minors is sufficient here because the first three are strictly positive
 and the final Schur complement is zero; a generic claim that nonnegative
 leading minors imply positive semidefiniteness would be false.
 
-For provenance of the candidate, the last linear subresultant of
-$F$ and $\partial F/\partial c$ is
+The last linear subresultant of $F$ and $\partial F/\partial c$ is
 
 ```math
 256u^2(4u-5)(Dc-N),
@@ -195,9 +193,8 @@ and their resultant is
 -4096u^4(4u-5)P(u).
 ```
 
-These elimination identities explain the discovery of (2). The proof of
-the obstruction uses (3)--(10) directly and does not assume that numerical
-optimization or elimination alone certifies feasibility.
+The obstruction follows directly from the exact identities and positivity
+bounds (3)–(10); the elimination identities are supplementary.
 
 ## Consequence for the strict derivative contract
 
@@ -216,8 +213,9 @@ This contradicts (7). Therefore at $b=B$ no homogeneous quartic,
 whether positive definite or otherwise, can have strictly negative orbital
 derivative away from the origin.
 
-This argument does **not** exclude a positive definite quartic with a weak
-derivative inequality at $b=B$. Its negative derivative must lie in the
-kernel face of this rank-three moment matrix. The companion endpoint
-certificate establishes that this weak case actually occurs.
+The [endpoint certificate](Endpoint.md) attains weak feasibility. Its
+three-atom dual and the injective derivative map prove the stronger
+[endpoint cone classification](../Proof.md#4-exhaustion-of-the-parameter-line):
+every quartic with nonpositive derivative at $B$ is a nonnegative multiple
+of the explicit positive endpoint quartic.
 

@@ -1,20 +1,22 @@
 # quartic-lyapunov
 
-Read README.md, VERIFICATION.md, IMPLEMENTATION.md and Proof.md before extending
-the formal contract. Keep the repository private until JD directs otherwise.
-The current endpoint is a complete initial formal build for GPT Pro review;
-Palomar submission and publication are later steps controlled by JD.
+Read [README](README.md), [Verification](VERIFICATION.md),
+[Formal architecture](IMPLEMENTATION.md) and [Proof](Proof.md) before changing
+the formal contract. The repository is public; preserve its visibility unless
+JD explicitly requests a change.
 
-Preserve arbitrary real quartic coefficients, all nonzero real points and the
-actual Lie derivative. Do not weaken classification to a sampled interval,
-a conditional certificate theorem, or a symmetry-restricted family.
+Preserve arbitrary real quartic coefficients, every nonzero real point and
+the actual Lie derivative. Do not replace the classification by sampled
+inequalities, coefficient restrictions or conditional certificate existence.
+Preserve the full endpoint derivative cone and the literal sextic certificate.
 
-Every mathematical claim must distinguish written proof, finite exact replay,
-Lean compilation, exact-commit Linux verification and external review. Generated
-proofs must be checked by Lean's kernel with only propext, Classical.choice and
-Quot.sound. Keep the Challenge independent of project proof imports.
+Keep written analytic results distinct from finite exact replay and formal
+verification. The Challenge must import only Mathlib; the Solution must contain
+no proof placeholders. Permit only `propext`, `Classical.choice` and
+`Quot.sound` in theorem dependencies.
 
-Use coherent codex/ branches. Check the full build and source contract after
-formal changes. Finish Comparator and independent kernel replay on the exact
-candidate before claiming readiness. Do not introduce development-source paths
-or unrelated project history into standalone documentation.
+After formal changes, run source and evidence checks, the full build, axiom
+audits and negative controls. Claim release verification only after Comparator,
+independent-kernel replay and a fresh Linux build pass on the exact commit.
+Use coherent `codex/` branches and keep standalone documentation focused on
+mathematics, proof architecture and reproducible evidence.

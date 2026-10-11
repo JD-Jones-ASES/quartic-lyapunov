@@ -47,17 +47,12 @@ jobs:
           lint: false
           use-github-cache: false
           use-mathlib-cache: true
-      - name: Check source contract
-        run: python3 scripts/check_sources.py
-      - name: Validate metadata and regenerate exact endpoint evidence
+      - name: Replay finite evidence, source contract, metadata and corruption controls
         run: |
           python3 -m pip install -r requirements.txt
-          mkdir -p .lake/verification
-          python3 scripts/validate_metadata.py
-          python3 evidence/endpoint_certificate.py | tee .lake/verification/primary.json
-          python3 -O evidence/endpoint_certificate.py | tee .lake/verification/primary-optimized.json
-          python3 evidence/independent_replay.py | tee .lake/verification/independent.json
-          python3 -O evidence/independent_replay.py | tee .lake/verification/independent-optimized.json
+          python3 scripts/verify_evidence.py
+      - name: Regenerate exact endpoint sources and confirm reproducibility
+        run: |
           python3 scripts/generate_endpoint.py
           python3 scripts/generate_lie_map.py
           git diff --exit-code

@@ -2,7 +2,7 @@
 
 ## Theorem
 
-Fix damping one. Put R=x²+y² and
+Fix damping one. Put $R=x^2+y^2$ and
 
 ```math
 f_b(x,y)=(-R+b(x^2-y^2))(x,y)+R(-y,x),\qquad b\ge0.
@@ -14,10 +14,10 @@ The coefficients of a candidate
 V(x,y)=v_0x^4+v_1x^3y+v_2x^2y^2+v_3xy^3+v_4y^4
 ```
 
-are **arbitrary real numbers**. Positive definiteness means V(x,y)>0 for
-all (x,y)≠(0,0); homogeneity already gives V(0,0)=0. A weak certificate
-has ∇V·f_b≤0 at every nonzero point; a strict certificate has ∇V·f_b<0
-there. No coefficient symmetry or SOS ansatz restricts the theorem.
+are **arbitrary real numbers**. Positive definiteness means $V(x,y)>0$ for
+all $(x,y)\ne(0,0)$; homogeneity gives $V(0,0)=0$. A weak certificate
+has $\nabla V\cdot f_b\le0$ at every nonzero point; a strict certificate
+has $\nabla V\cdot f_b<0$ there. No coefficient symmetry or SOS ansatz restricts the theorem.
 
 Define
 
@@ -25,32 +25,35 @@ Define
 \Phi(u)=16u^6-92u^5+125u^4-134u^3-103u^2-200u+100.
 ```
 
-Let u_* be the **unique real root greater than one** of Φ, and set
-B=√u_*. Exact isolating intervals and uniqueness are established in the
+Let $u_*$ be the **unique real root greater than one** of $\Phi$, and set
+$B=\sqrt{u_*}$. Exact isolating intervals and uniqueness are established in the
 [dual certificate](docs/Dual.md). Numerically, for orientation only,
 
 ```math
 u_*=4.52903746039757\ldots,\qquad B=2.1281535330886186\ldots.
 ```
 
-**Theorem.** For every real b≥0:
+**Theorem.** For every real $b\ge0$:
 
 1. A positive definite homogeneous quartic with strict derivative exists
-   **if and only if 0≤b<B**.
+   if and only if $0\le b<B$.
 2. A positive definite homogeneous quartic with weak derivative exists
-   **if and only if 0≤b≤B**.
-3. At b=B the weak quartic is unique up to positive scaling. Its negative
-   derivative is the square of a real homogeneous cubic with exactly three
-   distinct real projective zero lines.
+   if and only if $0\le b\le B$.
+3. At $b=B$, a real homogeneous quartic has nonpositive Lie derivative
+   everywhere off the origin if and only if it is $kV_*$ for $k\ge0$,
+   where $V_*$ is the explicit positive endpoint quartic. Every nonzero
+   member is therefore positive definite. Its negative derivative is a
+   cubic square with exactly three distinct real projective zero lines.
 
-The same statements for signed b use |b|. This follows by a quarter-turn
-of the plane, which conjugates f_b and f_{−b}.
+The feasibility statements for signed $b$ use $|b|$. A quarter-turn
+conjugates $f_b$ and $f_{-b}$ and transports the endpoint cone to $b=-B$.
 
-This classifies the specified damping-one slice. It does **not** treat a=1
-as a time normalization of every a>0: changing time also changes angular
-speed. [Extensions](docs/Extensions.md) prove a degree-preserving contraction
-principle for every damping a>0, but do not give its general quartic
-threshold B(a).
+This quartic classification fixes damping one; time rescaling also changes
+angular speed. The written [extensions](docs/Extensions.md) treat
+degree-preserving contraction for every $a>0$, and the
+[all-degree theorem](docs/AllDegreeClassification.md) classifies unrestricted
+polynomial and local analytic feasibility. The exact quartic threshold
+$B_2(a)$ for arbitrary damping remains undetermined.
 
 ## 1. Angular reduction with the correct degree
 
@@ -137,10 +140,10 @@ Q is zero-free on the closed disk. Equations (1) and (3) give the strict
 derivative inequality. At ρ=0 it is |Q(0)|²R^N, so this endpoint is
 included. ∎
 
-The lemma uses classical complex analysis with its hypotheses checked.
-It is a written analytic argument, not a conclusion of the finite replay.
-[Sources](docs/Sources.md) and the [implementation plan](IMPLEMENTATION.md) identify this
-dependency explicitly.
+The degree-four, damping-one specialization is formalized by real
+polynomial factorization and the complex maximum principle; see the
+[formal architecture](IMPLEMENTATION.md). The general-degree statement and
+Poisson margin above remain written analytic results.
 
 ## 3. Exact endpoint witness and dual obstruction
 
@@ -177,24 +180,28 @@ obstruction. Thus **no weak quartic** exists at any b>B. A strict quartic
 is also weak, so this proves both iff statements, with no uncovered
 interval or numerical inference.
 
-For endpoint uniqueness, use the positive three-atom functional from
-ENDPOINT. Every nonnegative sextic −∇V·f_B annihilated by that functional
-must vanish on its three projective support lines. Nonnegativity forces
-at least a double root at each line, exhausting degree six; hence it is
-k h² for k≥0. The 7×5 derivative coefficient map has rank five, verified
-exactly. Therefore V=kV_*. Positive definiteness forces k>0.
+For the endpoint cone, take any real homogeneous quartic $V$ with
+$-\nabla V\cdot f_B\ge0$, without assuming a sign for $V$. The
+[positive three-atom functional](docs/Endpoint.md#an-elementary-positive-dual-functional)
+annihilates its derivative, so that derivative vanishes on all three
+projective support lines. Nonnegativity forces at least a double root at
+each line, exhausting degree six. Hence $-\nabla V\cdot f_B=kh^2$ for
+$k\ge0$. The $7\times5$ derivative coefficient map has rank five, so the
+identity $-\nabla V_*\cdot f_B=h^2$ gives $V=kV_*$. Conversely, every such
+nonnegative multiple has nonpositive derivative. If $V\ne0$, then $k>0$
+and $V$ is positive definite, with the same three derivative-zero lines.
 
-## Scope and next use
+## Degree separation and analytic extensions
 
-The [rational example at b=2](docs/Applications.md) exhibits strict quartic
-feasibility beyond the weak quadratic region. It makes the degree benefit
-concrete without using algebraic coefficients. The general contraction
-lemma also gives an explicit relative derivative margin (3).
+The [integer quartic at $b=2$](docs/Applications.md) is strict where no
+positive weak quadratic exists. The [integer sextic at $b=9/4$](docs/SexticSeparation.md)
+is strict where neither a positive weak quadratic nor a positive weak quartic
+exists. Both pointwise degree separations are formalized.
 
-Liu–Fitzsimmons prove stability throughout the entire a>0 family using a
-nonpolynomial function. Our quartic exclusion says nothing by itself about
-higher-degree certificates between B and the published all-degree
-obstruction b=4. Complete all-degree feasibility and B(a) for variable
-damping remain **UNKNOWN** here. The [source audit](docs/Sources.md) found no
-matching classification in the inspected literature; worldwide priority
-remains **UNKNOWN**.
+The written [quadratic boundary](docs/QuadraticBoundary.md) treats all
+positive damping. The written [all-degree theorem](docs/AllDegreeClassification.md)
+proves that homogeneous polynomial certificates and local real-analytic
+weak certificates exist exactly for $|b|<(1+a^{2/3})^{3/2}$, with strict
+polynomials in every sufficiently large even degree. The
+[quantitative bound](docs/QuantitativeDegreeBound.md) supplies an explicit
+sufficient degree. These analytic results are outside the Lean contract.

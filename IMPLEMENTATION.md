@@ -1,38 +1,34 @@
 # Formal architecture
 
-The final contract uses all five arbitrary real quartic coefficients,
-positivity at every nonzero real pair, and the actual derivative along the
-specified cubic field. The boundary is the isolated positive algebraic root
-of the displayed degree-twelve equation, with equivalence to the unique
-root above one of the degree-six equation in its square.
+The contract quantifies over all five real quartic coefficients and every
+nonzero real pair. Polynomial evaluation and Lie derivatives are concrete
+definitions; gradient identities connect them to the displayed cubic field.
+The algebraic boundary is specified by its polynomial equation and rational
+isolating interval.
 
-1. Define polynomial semantics and prove the gradient bridge.
-2. Prove algebraic root existence, uniqueness and rational isolation.
-3. Check the endpoint cubic-square identity and positive quartic certificate.
-4. Build the three-atom dual and classify its equality case.
-5. Prove degree-preserving contraction using two positive quadratic factors
-   and the complex maximum principle over the unit disk.
-6. Conclude both strict and weak if-and-only-if statements and endpoint uniqueness.
-7. Include the exact rational degree-separation application and useful proved
-   extensions in the compared contract.
-8. Verify the exact candidate on Linux with statement comparison, permitted
-   axioms, independent kernels and a fresh build before the review handoff.
+| Modules | Role |
+| --- | --- |
+| `Basic`, `Root`, `Interval`, `ExplicitEndpoint` | Polynomial semantics, the actual gradient bridge, algebraic root isolation and explicit endpoint coefficients. |
+| `EndpointData`, `EndpointIdentities`, `EndpointSigns`, `Endpoint`, `CubicRoots` | Exact endpoint identities, positivity and three distinct real derivative-zero lines. |
+| `AtomicDual`, `LieMap`, `EndpointUnique`, `EndpointCone` | Three-atom obstruction, injectivity and the complete nonnegative endpoint coefficient ray without an assumed sign for the quartic. |
+| `Factorization`, `SpectralFactors`, `SpectralDerivative`, `PositiveReal`, `Contraction` | Degree-preserving quartic contraction and strict interior positivity. |
+| `Classification`, `Application`, `SexticApplication` | Signed classification and explicit degree separations at two and nine-fourths. |
 
-The classification must not acquire extra certificate hypotheses, symmetry
-restrictions or sampling qualifications during implementation. The primary
-analytic dependency is outer-factor contraction, detailed in [Proof.md](Proof.md).
-A polynomial coefficient map alone is insufficient without the actual
-Lie-derivative bridge. General ODE stability is outside the initial contract.
+The quartic contraction proof derives two positive quadratic factors from
+Mathlib's real polynomial factorization. Their outer linear factors are
+contracted radially. The spectral derivative identity and complex maximum
+principle then give the strict actual Lie inequality. This formalizes the
+degree-four, damping-one specialization of the
+[written contraction argument](Proof.md#2-one-weak-certificate-gives-strict-certificates-below-it).
 
-All mathematical stages above are implemented. Release verification evidence belongs in
-[VERIFICATION.md](VERIFICATION.md).
+The [Challenge](QuarticLyapunovChallenge.lean) imports only Mathlib.
+The [Solution](QuarticLyapunovSolution.lean) exposes ten theorem contracts;
+[comparator.json](comparator.json) also compares fourteen concrete definitions,
+including the sextic evaluation, Lie derivative and certificate predicates.
+The supporting formal proofs lie in [QuarticLyapunov](QuarticLyapunov).
 
-The degree-four contraction is implemented without assuming Fejér–Riesz:
-`Factorization.lean` derives two positive quadratic factors using Mathlib's
-real polynomial factorization. `SpectralFactors.lean` constructs their outer
-linear factors and contracts them radially. `SpectralDerivative.lean` proves
-the exact identity with the actual polynomial Lie derivative.
-`PositiveReal.lean` derives strict interior real-part positivity from the
-complex maximum principle, and `Contraction.lean` combines these steps.
-This is a specialization of the written outer-factor argument. The general
-even-degree and quantitative Poisson-bound supplements remain written results.
+General even-degree contraction, the all-degree analytic classification,
+quantitative degree bounds and the all-damping quadratic boundary are written
+supplements. Their functional analysis and measure approximation are outside
+the Lean contract. [Verification](VERIFICATION.md) records the mechanical
+checks for the formal source.
